@@ -1,0 +1,382 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ca8f9a89-e833-4d8f-833b-4b4cf826f531",
+              "leftValue": "={{ $('Message a model').item.json.content.parts[0].text }}",
+              "rightValue": "AI",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "0e208a30-a03d-4a3f-a781-db3cdebd8ace",
+              "leftValue": "={{ $('Message a model').item.json.content.parts[0].text }}",
+              "rightValue": "ai",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "40e9b885-3d51-42d1-9b73-26379b125e6e",
+              "leftValue": "={{ $('Message a model').item.json.content.parts[0].text }}",
+              "rightValue": "Ai",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "fbeb19c1-5004-40ba-a519-f8bf0fef2359",
+              "leftValue": "={{ $('Message a model').item.json.content.parts[0].text }}",
+              "rightValue": "인공지능",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        576,
+        16
+      ],
+      "id": "8fa184a4-1c1d-47e2-9df5-5e0d903bcf65",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "authentication": "webhook",
+        "content": "=■ 제목: {{ $('RSS Feed Trigger').item.json.title }}\n\n■ 3줄 요약: {{ $('Message a model').item.json.content.parts[0].text }}\n\n■ 원문 보기: {{ $('RSS Feed Trigger').item.json.link }}\n\n— 자동 발송된 메일입니다 (n8n 뉴스봇)",
+        "options": {}
+      },
+      "id": "f068f5a1-cb74-4ebd-8b4d-4b05d560fff3",
+      "name": "Send to Discord",
+      "type": "n8n-nodes-base.discord",
+      "typeVersion": 2,
+      "position": [
+        768,
+        -96
+      ],
+      "webhookId": "bf8c3651-7b47-45ba-9546-9e58c4a1c1eb",
+      "credentials": {
+        "discordWebhookApi": {
+          "id": "zh4WzWilJDwqVjoq",
+          "name": "Discord Webhook account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-3.1-flash-lite",
+          "mode": "list",
+          "cachedResultName": "models/gemini-3.1-flash-lite"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=다음 뉴스 기사를 한국어로 3줄 요약해줘.\n핵심 사실 위주로, 각 줄은 한 문장으로.\n\n제목: {{ $json.title }}\n내용: {{ $json.contentSnippet }}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.2,
+      "position": [
+        96,
+        112
+      ],
+      "id": "3a601bc8-d698-4c50-bf36-3f366eb2c51b",
+      "name": "Message a model",
+      "retryOnFail": true,
+      "executeOnce": false,
+      "maxTries": 3,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Ey9myrokqRzr2P4h",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1Az9988iFvz7SY7Rs6rpGKNXd-IXVyDVtPfuiToAxPN8",
+          "mode": "list",
+          "cachedResultName": "최신뉴스_금융",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Az9988iFvz7SY7Rs6rpGKNXd-IXVyDVtPfuiToAxPN8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "시트1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Az9988iFvz7SY7Rs6rpGKNXd-IXVyDVtPfuiToAxPN8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "수집일": "={{ $now.setZone('Asia/Seoul').toFormat('yyyy-MM-dd') }}",
+            "기사 제목": "={{ $('RSS Feed Trigger').item.json.title }}",
+            "기사 링크": "={{ $('RSS Feed Trigger').item.json.link }}"
+          },
+          "matchingColumns": [
+            "수집일"
+          ],
+          "schema": [
+            {
+              "id": "수집일",
+              "displayName": "수집일",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "기사 제목",
+              "displayName": "기사 제목",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "기사 링크",
+              "displayName": "기사 링크",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        384,
+        112
+      ],
+      "id": "5581780b-61cf-4755-b67b-0761c85c1118",
+      "name": "Append or update row in sheet",
+      "retryOnFail": true,
+      "waitBetweenTries": 2000,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZRxDl3KSckTJ8efW",
+          "name": "Google Sheets OAuth2 API"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1YH6JGiJ2SwTcoEaH4afR__zAPQEy-nYhz0daaM9Hzo8",
+          "mode": "list",
+          "cachedResultName": "Error 백업 시트",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YH6JGiJ2SwTcoEaH4afR__zAPQEy-nYhz0daaM9Hzo8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "시트1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YH6JGiJ2SwTcoEaH4afR__zAPQEy-nYhz0daaM9Hzo8/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "수집일": "={{ $now.setZone('Asia/Seoul').toFormat('yyyy-MM-dd') }}",
+            "기사 제목": "={{ $('RSS Feed Trigger').item.json.title }}",
+            "기사 링크": "={{ $('RSS Feed Trigger').item.json.link }}"
+          },
+          "matchingColumns": [
+            "수집일"
+          ],
+          "schema": [
+            {
+              "id": "수집일",
+              "displayName": "수집일",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "기사 제목",
+              "displayName": "기사 제목",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "기사 링크",
+              "displayName": "기사 링크",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        576,
+        208
+      ],
+      "id": "dcd96009-2a72-4ccd-92a4-822b901debfc",
+      "name": "Append or update row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZRxDl3KSckTJ8efW",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour"
+            }
+          ]
+        },
+        "feedUrl": "https://news.google.com/rss/topics/CAAqIggKIhxDQkFTRHdvSkwyMHZNR2RtY0hNekVnSnJieWdBUAE?hl=ko&gl=KR&ceid=KR%3Ako"
+      },
+      "type": "n8n-nodes-base.rssFeedReadTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        112
+      ],
+      "id": "b980f87c-df83-4156-9ae8-824a5796ad68",
+      "name": "RSS Feed Trigger"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send to Discord",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append or update row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet1": {
+      "main": [
+        []
+      ]
+    },
+    "RSS Feed Trigger": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "errorWorkflow": "flD9pWmHMTpNlgOc",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "3c94c205-9056-4de3-8574-cb532755bf4c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8218a0c79da80f30a0a31cc6fef0f4a92b8f6cd361cce15e1f05f0971c7b5bca"
+  },
+  "nodeGroups": [],
+  "id": "a45ykL3YMuwFxLbb",
+  "tags": []
+}
