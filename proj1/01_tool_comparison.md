@@ -21,7 +21,7 @@
         - 우수 평점 고객 VIP 데이터 아카이빙
     - **Action 2:** `Discord - Post a Message` 모듈 추가
         - `# vip_고객명단` 채널로 알림
-    - **Action 3**: ****`Discord - Post a Message` 모듈 추가
+    - **Action 3**: `Discord - Post a Message` 모듈 추가
         - `# 만족도_개선사항` 채널로 개선 알림
 
 <details>
@@ -49,7 +49,7 @@
     - **Action 2:** `Discord - Send Channel Message` 모듈 추가
         - `# vip_고객명단` 채널로 알림
 5. Zap 2에 **Action** 연결: Discord 알림
-    - **Action 1**: ****`Discord - Send Channel Message` 모듈 추가
+    - **Action 1**: `Discord - Send Channel Message` 모듈 추가
         - `# 만족도_개선사항` 채널로 개선 알림
 
 <details>
@@ -74,7 +74,7 @@
         - 우수 평점 고객 VIP 데이터 아카이빙
     - **Action 2:** `Discord - Send a message` 모듈 추가
         - `# vip_고객명단` 채널로 알림
-    - **Action 3**: ****`Discord - Send a message` 모듈 추가
+    - **Action 3**: `Discord - Send a message` 모듈 추가
         - `# 만족도_개선사항` 채널로 개선 알림
 
 <details>
@@ -92,8 +92,8 @@
 | UI/UX | 원형 노드+선 연결 | 위→아래 직렬 체크리스트 | 노드+선 연결 (Make와 유사) |
 | 설정 난이도 | 중 | 하 (가장 직관적) | 중~상 (JSON 데이터 구조에 대한 기초 이해 필요) |
 | 조건 분기 | Router (다중 분기) | Filter (무료는 Zap 분리 필요) | IF (2분기) / Switch (다중) |
-| 연동 서비스 범위 | 주요 앱은 대부분 지원 | 7,000+ 앱 (전 세계 거의 모든 SaaS 및 앱 연동 가능) | 일반 앱 연동은 상대적으로 적음 |
-| 무료 플랜 | 매우 넉넉 (월 1,000회) | 매우 제한적 (월 100회) | Cloud는 14일 체험 / 자가호스팅 시 무제한 무료 |
+| 연동 서비스 범위 | 3,000+ 앱 | 7,000+ 앱 (전 세계 거의 모든 SaaS 및 앱 연동 가능) | 일반 앱 연동은 상대적으로 적음 |
+| 무료 플랜 | 매우 넉넉 (월 1,000 크레딧) | 매우 제한적 (월 100회) | Cloud는 14일 체험 / 자가호스팅 시 무제한 무료 |
 | 실행 로그 | 실행 히스토리, 단계별 데이터를 직관적으로 확인 가능 | Task History 메뉴에서 과거 기록을 텍스트 목록으로 확인 | 가장 상세한 노드별 추적이 가능 |
 
 ## 4. 장단점 정리
