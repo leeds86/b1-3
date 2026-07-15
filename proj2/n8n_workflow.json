@@ -1,5 +1,5 @@
 {
-  "name": "My workflow",
+  "name": "Sanitized workflow template",
   "nodes": [
     {
       "parameters": {
@@ -75,11 +75,11 @@
         768,
         -96
       ],
-      "webhookId": "bf8c3651-7b47-45ba-9546-9e58c4a1c1eb",
+      "webhookId": "REPLACE_WITH_YOUR_WEBHOOK_ID",
       "credentials": {
         "discordWebhookApi": {
-          "id": "zh4WzWilJDwqVjoq",
-          "name": "Discord Webhook account 3"
+          "id": "",
+          "name": "REPLACE_WITH_YOUR_DISCORD_WEBHOOK_CREDENTIAL"
         }
       }
     },
@@ -115,8 +115,8 @@
       "waitBetweenTries": 2000,
       "credentials": {
         "googlePalmApi": {
-          "id": "Ey9myrokqRzr2P4h",
-          "name": "Google Gemini(PaLM) Api account"
+          "id": "",
+          "name": "REPLACE_WITH_YOUR_GEMINI_CREDENTIAL"
         }
       }
     },
@@ -125,17 +125,17 @@
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
-          "value": "1Az9988iFvz7SY7Rs6rpGKNXd-IXVyDVtPfuiToAxPN8",
+          "value": "REPLACE_WITH_YOUR_SPREADSHEET_ID",
           "mode": "list",
-          "cachedResultName": "최신뉴스_금융",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Az9988iFvz7SY7Rs6rpGKNXd-IXVyDVtPfuiToAxPN8/edit?usp=drivesdk"
+          "cachedResultName": "REPLACE_WITH_YOUR_SPREADSHEET_NAME",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/REPLACE_WITH_YOUR_SPREADSHEET_ID/edit"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "시트1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Az9988iFvz7SY7Rs6rpGKNXd-IXVyDVtPfuiToAxPN8/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/REPLACE_WITH_YOUR_SPREADSHEET_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -196,8 +196,8 @@
       "waitBetweenTries": 2000,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "ZRxDl3KSckTJ8efW",
-          "name": "Google Sheets OAuth2 API"
+          "id": "",
+          "name": "REPLACE_WITH_YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       },
       "onError": "continueErrorOutput"
@@ -207,17 +207,17 @@
         "operation": "appendOrUpdate",
         "documentId": {
           "__rl": true,
-          "value": "1YH6JGiJ2SwTcoEaH4afR__zAPQEy-nYhz0daaM9Hzo8",
+          "value": "REPLACE_WITH_YOUR_BACKUP_SPREADSHEET_ID",
           "mode": "list",
-          "cachedResultName": "Error 백업 시트",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YH6JGiJ2SwTcoEaH4afR__zAPQEy-nYhz0daaM9Hzo8/edit?usp=drivesdk"
+          "cachedResultName": "REPLACE_WITH_YOUR_BACKUP_SPREADSHEET_NAME",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/REPLACE_WITH_YOUR_BACKUP_SPREADSHEET_ID/edit"
         },
         "sheetName": {
           "__rl": true,
           "value": "gid=0",
           "mode": "list",
           "cachedResultName": "시트1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1YH6JGiJ2SwTcoEaH4afR__zAPQEy-nYhz0daaM9Hzo8/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/REPLACE_WITH_YOUR_BACKUP_SPREADSHEET_ID/edit#gid=0"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -276,8 +276,8 @@
       "name": "Append or update row in sheet1",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "ZRxDl3KSckTJ8efW",
-          "name": "Google Sheets OAuth2 API"
+          "id": "",
+          "name": "REPLACE_WITH_YOUR_GOOGLE_SHEETS_CREDENTIAL"
         }
       }
     },
@@ -362,21 +362,21 @@
       ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1",
     "binaryMode": "separate",
     "availableInMCP": false,
     "timeSavedMode": "fixed",
-    "errorWorkflow": "flD9pWmHMTpNlgOc",
+    "errorWorkflow": "REPLACE_WITH_YOUR_ERROR_WORKFLOW_ID",
     "callerPolicy": "workflowsFromSameOwner"
   },
-  "versionId": "3c94c205-9056-4de3-8574-cb532755bf4c",
+  "versionId": "REPLACE_WITH_YOUR_WORKFLOW_VERSION_ID",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "8218a0c79da80f30a0a31cc6fef0f4a92b8f6cd361cce15e1f05f0971c7b5bca"
+    "instanceId": "REPLACE_WITH_YOUR_N8N_INSTANCE_ID"
   },
   "nodeGroups": [],
-  "id": "a45ykL3YMuwFxLbb",
+  "id": "REPLACE_WITH_YOUR_WORKFLOW_ID",
   "tags": []
 }
